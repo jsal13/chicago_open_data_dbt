@@ -1,0 +1,26 @@
+name: "chicago_open_data_dbt"
+version: "1.0.0"
+
+# Copy the profile.yml into ~/.dbt if DBT can't find it.
+profile: "chicago_open_data_dbt"
+
+model-paths: ["models", "sources"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+# directories to be removed by `dbt clean`
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  chicago_open_data_dbt:
+    staging:
+      +materialized: view
+    intermediate:
+      +materialized: view
+    marts:
+      +materialized: table

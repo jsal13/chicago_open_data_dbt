@@ -1,0 +1,123 @@
+version: 2
+
+seeds:
+  - name: chicago_crime_seed
+    description: ""
+    data_type:
+    configure:
+      contract:
+        enforce: true
+
+    columns:
+      - name: id
+        description: ""
+        data_type: integer
+        data_tests:
+          - unique
+          - not_null
+
+      - name: date
+        description: ""
+        data_type: datetime_ntz
+        data_tests:
+          - not_null
+
+      - name: case_number
+        description: ""
+        data_type: text
+        data_tests:
+          - not_null
+
+      - name: block
+        description: ""
+        data_type: text
+        data_tests:
+          - not_null
+
+      - name: iucr
+        description: ""
+        data_type: text
+        data_tests:
+          - not_null
+
+      - name: primary_type
+        description: ""
+        data_type: text
+        data_tests:
+          - not_null
+
+      - name: description
+        description: ""
+        data_type: text
+        data_tests:
+          - not_null
+
+      - name: location_description
+        description: ""
+        data_type: text
+
+      - name: arrest
+        description: ""
+        data_type: boolean
+        data_tests:
+          - not_null
+
+      - name: domestic
+        description: ""
+        data_type: boolean
+        data_tests:
+          - not_null
+
+      - name: beat
+        description: ""
+        data_type: text
+        data_tests:
+          - not_null
+
+      - name: district
+        description: ""
+        data_type: text
+        data_tests:
+          - not_null
+
+      - name: ward
+        description: ""
+        data_type: integer
+
+      - name: community_area
+        description: ""
+        data_type: text
+
+      - name: fbi_code
+        description: ""
+        data_type: text
+        data_tests:
+          - not_null
+
+      - name: x_coordinate
+        description: ""
+        data_type: float
+
+      - name: y_coordinate
+        description: ""
+        data_type: float
+
+      - name: year
+        description: ""
+        data_type: integer
+        data_tests:
+          - not_null
+
+      - name: updated_on
+        description: ""
+        data_type: datetime_ntz
+        data_tests:
+          - not_null
+
+      - name: latitude
+        description: ""
+        data_type: float
+
+      - name: longitude
+        description: ""
+        data_type: float

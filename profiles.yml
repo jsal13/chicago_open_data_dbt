@@ -1,0 +1,6 @@
+chicago_open_data_dbt:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: "database.db"

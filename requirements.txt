@@ -1,0 +1,11 @@
+dbt-core
+dbt-duckdb
+sqlfluff-templater-dbt
+dagster-dbt 
+dagster-webserver
+python-dotenv
+sodapy
+pandas
+polars
+pandas-stubs
+pyarrow
