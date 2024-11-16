@@ -90,14 +90,14 @@ if __name__ == "__main__":
         """Gets last day of year-month as an int."""
         return calendar.monthrange(year, month)[1]
 
-    for year in range(2012, 2020):
+    for year in range(2020, 2025):
         # Create partition folder for year.
         current_year_folder: str = os.path.join(DATA_DIR, f"year={year}")
         _create_partition_folder(current_year_folder)
 
         logger.info(f"Requesting data for year={year}...")
 
-        for month in range(1, 13):
+        for month in range(1, 12):
 
             # Create partition folder for month.
             current_month_folder: str = os.path.join(

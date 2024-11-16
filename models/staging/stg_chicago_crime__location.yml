@@ -71,19 +71,19 @@ models:
 
       - name: x_coordinate
         description: '{{ doc("stg_chicago_crime__x_coordinate") }}'
-        data_type: float
+        data_type: integer
         data_test:
           - dbt_expectations.expect_column_to_exist
           - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: float
+              column_type: integer
 
       - name: y_coordinate
         description: '{{ doc("stg_chicago_crime__y_coordinate") }}'
-        data_type: float
+        data_type: integer
         data_test:
           - dbt_expectations.expect_column_to_exist
           - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: float
+              column_type: integer
 
       - name: latitude
         description: '{{ doc("stg_chicago_crime__latitude") }}'
