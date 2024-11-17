@@ -1,5 +1,9 @@
 {% !! TABLES !! %}
 
+{% docs crime_raw__crime %}
+Raw Chicago open crime data taken from <https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-Present/ijzp-q8t2/about_data>.
+{% enddocs %}
+
 {% docs stg_chicago_crime__locations %}
 This table holds information about the location of crimes.  It is indexed by `crime_id`.
 {% enddocs %}

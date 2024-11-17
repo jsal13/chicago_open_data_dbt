@@ -1,0 +1,127 @@
+version: 2
+
+sources:
+  - name: crime_raw
+    database: admin
+    schema: public
+    tables:
+      - name: crime
+        description: '{{ doc("crime_raw__crime") }}'
+        configure:
+          contract:
+            enforce: true
+
+        columns:
+          - name: id
+            description: '{{ doc("stg_chicago_crime__id") }}'
+            data_type: bigint
+            data_tests:
+              - unique
+              - not_null
+
+          - name: date
+            description: '{{ doc("stg_chicago_crime__occurred_on") }}'
+            data_type: datetime
+            data_tests:
+              - not_null
+
+          - name: case_number
+            description: '{{ doc("stg_chicago_crime__case_number") }}'
+            data_type: text
+            data_tests:
+              - not_null
+
+          - name: block
+            description: '{{ doc("stg_chicago_crime__neighborhood_block") }}'
+            data_type: text
+            data_tests:
+              - not_null
+
+          - name: iucr
+            description: '{{ doc("stg_chicago_crime__id") }}'
+            data_type: text
+            data_tests:
+              - not_null
+
+          - name: primary_type
+            description: '{{ doc("stg_chicago_crime__offense_primary_type") }}'
+            data_type: text
+            data_tests:
+              - not_null
+
+          - name: description
+            description: '{{ doc("stg_chicago_crime__offense_description") }}'
+            data_type: text
+            data_tests:
+              - not_null
+
+          - name: location_description
+            description: '{{ doc("stg_chicago_crime__location_description") }}'
+            data_type: text
+
+          - name: arrest
+            description: '{{ doc("stg_chicago_crime__is_arrested") }}'
+            data_type: boolean
+            data_tests:
+              - not_null
+
+          - name: domestic
+            description: '{{ doc("stg_chicago_crime__is_domestic") }}'
+            data_type: boolean
+            data_tests:
+              - not_null
+
+          - name: beat
+            description: '{{ doc("stg_chicago_crime__police_beat") }}'
+            data_type: text
+            data_tests:
+              - not_null
+
+          - name: district
+            description: '{{ doc("stg_chicago_crime__police_district") }}'
+            data_type: text
+            data_tests:
+              - dbt_expectations.expect_column_values_to_not_be_null:
+                  row_condition: id not in {{ var("distict_null_records") }}
+
+          - name: ward
+            description: '{{ doc("stg_chicago_crime__ward") }}'
+            data_type: integer
+
+          - name: community_area
+            description: '{{ doc("stg_chicago_crime__community_area") }}'
+            data_type: text
+
+          - name: fbi_code
+            description: '{{ doc("stg_chicago_crime__fbi_code") }}'
+            data_type: text
+            data_tests:
+              - not_null
+
+          - name: x_coordinate
+            description: '{{ doc("stg_chicago_crime__x_coordinate") }}'
+            data_type: integer
+
+          - name: y_coordinate
+            description: '{{ doc("stg_chicago_crime__y_coordinate") }}'
+            data_type: integer
+
+          - name: year
+            description: '{{ doc("stg_chicago_crime__year") }}'
+            data_type: integer
+            data_tests:
+              - not_null
+
+          - name: updated_on
+            description: '{{ doc("stg_chicago_crime__updated_on") }}'
+            data_type: datetime_ntz
+            data_tests:
+              - not_null
+
+          - name: latitude
+            description: '{{ doc("stg_chicago_crime__latitude") }}'
+            data_type: float
+
+          - name: longitude
+            description: '{{ doc("stg_chicago_crime__longitude") }}'
+            data_type: float

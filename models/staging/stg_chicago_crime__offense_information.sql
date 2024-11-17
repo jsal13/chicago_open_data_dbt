@@ -1,15 +1,26 @@
+{{ config(
+    indexes=[
+        {
+            "columns": ["crime_id"],
+            "unique": true,
+            "type": "btree",
+        }
+    ]
+) }}
+
 with source as (
     select *
-    from {{ ref('chicago_crime_seed') }}
+    from {{ source('crime_raw', "crime") }}
 ),
 renamed as (
     select
         -- IDs
         {{ adapter.quote("id") }} as crime_id,
+        {{ adapter.quote("case_number") }} as case_number,
 
-        -- DATES
-        {{ adapter.quote("date") }} as occurred_on,       
-        {{ adapter.quote("updated_on") }} as updated_on,
+        -- TIMESTAMPS
+        {{ adapter.quote("date") }}::timestamp as occurred_on,
+        {{ adapter.quote("updated_on") }}::timestamp as updated_on,
 
         -- STRINGS
         {{ adapter.quote("iucr") }} as iucr_code,

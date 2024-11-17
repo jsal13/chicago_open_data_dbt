@@ -40,3 +40,20 @@ if __name__ == "__main__":
         print(f"Inserting {year} into table...")
         csv_loc = f"./data_monthly/{year}.csv"
         write_csv_to_db(csv_loc=csv_loc)
+
+# TO DELETE DUPLICATES:
+#
+# DELETE
+# FROM test
+# WHERE ctid IN
+# (
+#     SELECT ctid
+#     FROM(
+#         SELECT
+#             *,
+#             ctid,
+#             row_number() OVER (PARTITION BY crime_id ORDER BY ctid)
+#         FROM admin.public.crime
+#     ) s
+#     WHERE row_number >= 2
+# )

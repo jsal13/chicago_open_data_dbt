@@ -1,5 +1,6 @@
 dbt-core
-dbt-duckdb
+# dbt-duckdb
+dbt-postgres
 sqlfluff-templater-dbt
 dagster-dbt 
 dagster-webserver

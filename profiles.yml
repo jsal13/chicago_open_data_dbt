@@ -2,5 +2,11 @@ chicago_open_data_dbt:
   target: dev
   outputs:
     dev:
-      type: duckdb
-      path: "database.db"
+      type: postgres
+      host: 127.0.0.1
+      user: admin
+      password: example
+      port: 5432
+      dbname: admin
+      schema: public
+      threads: 8
