@@ -1,6 +1,7 @@
 import os
 import logging
 import glob
+from pathlib import Path
 
 import polars as pl
 
@@ -48,6 +49,11 @@ def _get_file_list_for_year(year: int) -> list[str]:
 
 def _get_file_list() -> list[str]:
     return glob.glob(pathname=os.path.join(DATA_DIR, "**", "**", "*.csv"))
+
+
+def _create_data_folder(path: str) -> None:
+    """Creates a partition folder."""
+    Path(path).mkdir(parents=True, exist_ok=True)
 
 
 def concat_month(year: int, month: int, output: str = OUTPUT_DATA_DIR) -> None:
@@ -105,39 +111,11 @@ def concat_year(year: int, output: str = OUTPUT_DATA_DIR) -> None:
 
     df_concat: pl.DataFrame = pl.concat(dataframes, how="vertical_relaxed")
 
+    _create_data_folder(output)
     df_concat.write_csv(file=os.path.join(output, f"{year}.csv"))
-
-
-def concat_all(output: str = OUTPUT_DATA_DIR) -> None:
-    """Concat a year of csv data and output as a CSV to `output`."""
-
-    files = _get_file_list()
-    dataframes: list[pl.DataFrame] = []
-
-    for file in files:
-        logger.info(f"Reading {file}...")
-        raw_df: pl.DataFrame = pl.read_csv(
-            file, schema=CRIME_DATA_RAW_SCHEMA, infer_schema=False, has_header=True
-        )
-        raw_df = raw_df.with_columns(
-            pl.col("date")
-            .str.strptime(pl.Datetime(), "%Y-%m-%dT%H:%M:%S.000")
-            .dt.strftime("%Y-%m-%d %H:%M:%S")
-        )
-        raw_df = raw_df.with_columns(
-            pl.col("updated_on")
-            .str.strptime(pl.Datetime(), "%Y-%m-%dT%H:%M:%S.000")
-            .dt.strftime("%Y-%m-%d %H:%M:%S")
-        )
-
-        dataframes.append(raw_df)
-
-    df_concat: pl.DataFrame = pl.concat(dataframes, how="vertical_relaxed")
-
-    df_concat.write_csv(file=os.path.join(output, "chicago_crime.csv"))
 
 
 if __name__ == "__main__":
     # concat_month(2010, 1)
-    # concat_year(2011)
-    concat_all()
+    for i in range(2010, 2025):
+        concat_year(i)

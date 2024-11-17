@@ -9,3 +9,5 @@ pandas
 polars
 pandas-stubs
 pyarrow
+sqlalchemy
+psycopg2-binary
