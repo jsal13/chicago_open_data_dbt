@@ -1,27 +1,28 @@
-version: 2
-
-models:
-  - name: stg_chicago_crime__offense_primary_type_lookup
-    description: '{{ doc("stg_chicago_crime__offense_primary_type_lookup") }}'
+seeds:
+  - name: chicago_offense_primary_type
+    description: List of primary offense types.
     config:
       contract:
         enforced: true
 
     columns:
       - name: offense_primary_type_id
-        description: '{{ doc("stg_chicago_crime__offense_primary_type_id") }}'
-        data_type: bigint
+        description: '{{ doc("seed_chicago_offense_primary_type__offense_primary_type_id") }}'
+        data_type: integer
+        data_test:
+          - dbt_expectations.expect_column_to_exist
+          - unique
+          - not_null
+          - dbt_expectations.expect_column_values_to_not_be_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: integer
+
+      - name: offense_primary_type_name
+        description: '{{ doc("seed_chicago_offense_primary_type__offense_primary_type_name") }}'
+        data_type: text
         data_test:
           - dbt_expectations.expect_column_to_exist
           - unique
           - dbt_expectations.expect_column_values_to_not_be_null
-          - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: bigint
-
-      - name: offense_primary_type
-        description: '{{ doc("stg_chicago_crime__offense_primary_type") }}'
-        data_type: text
-        data_test:
-          - dbt_expectations.expect_column_to_exist
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: text

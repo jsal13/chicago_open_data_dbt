@@ -4,36 +4,28 @@
 Raw Chicago open crime data taken from <https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-Present/ijzp-q8t2/about_data>.
 {% enddocs %}
 
-{% docs stg_chicago_crime__locations %}
+{% docs base_chicago_crime__locations %}
 This table holds information about the location of crimes.  It is indexed by `crime_id`.
 {% enddocs %}
 
-{% docs stg_chicago_crime__offense_information %}
+{% docs base_chicago_crime__offense_information %}
 This table holds information about the criminal offense.  It is indexed by `crime_id`.
 {% enddocs %}
 
-{% docs stg_chicago_crime__location_description_lookup %}
+{% docs stg_chicago_crime__location_description %}
 Lookup table for `location_description`.
 {% enddocs %}
 
-{% docs stg_chicago_crime__offense_primary_type_lookup %}
+{% docs stg_chicago_crime__offense_primary_type %}
 Lookup table for `offense_primary_type` column.
 {% enddocs %}
 
-{% docs stg_chicago_crime__offense_description_lookup %}
+{% docs stg_chicago_crime__offense_description %}
 Lookup table for `offense_description` column.
 {% enddocs %}
 
-{% docs stg_chicago_crime__community_areas_dimension_tbl %}
+{% docs stg_chicago_crime__community_areas %}
 Dimension / lookup table for `community_area`.
-{% enddocs %}
-
-{% docs stg_chicago_crime__locations_normalized %}
-Normalized version of `stg_chicago_crime__locations`.  From the denormalized version: This table holds information about the location of crimes.  It is indexed by `crime_id`.
-{% enddocs %}
-
-{% docs stg_chicago_crime__offense_information_normalized %}
-Normalized version of `stg_chicago_crime__offense_information`.  This table holds information about the criminal offense.  It is indexed by `crime_id`.
 {% enddocs %}
 
 {% !! FIELDS !! %}
@@ -59,31 +51,27 @@ The Illinois Unifrom Crime Reporting code. This is directly linked to the Primar
 {% enddocs %}
 
 {% docs stg_chicago_crime__offense_primary_type_id %}
-ID for a lookup of `offense_primary_type`.  **Do not use these as static numbers, they will change when any new values are added.**
+ID for a lookup of `offense_primary_type`.
 {% enddocs %}
 
-{% docs stg_chicago_crime__offense_primary_type %}
-The primary description of the IUCR code.
+{% docs stg_chicago_crime__offense_primary_type_name %}
+The primary description of the iucr code.
 {% enddocs %}
 
 {% docs stg_chicago_crime__offense_description_id %}
 ID for a lookup of `offense_description`.  **Do not use these as static numbers, they will change when any new areas are added.**
 {% enddocs %}
 
-{% docs stg_chicago_crime__offense_description %}
+{% docs stg_chicago_crime__offense_description_name %}
 The secondary description of the IUCR code, a subcategory of the primary description.
 {% enddocs %}
 
 {% docs stg_chicago_crime__location_description_id %}
-ID for a lookup of location_description.  **Do not use these as static numbers, they will change when any new values are added.**
+ID for a lookup of location_description.
 {% enddocs %}
 
-{% docs stg_chicago_crime__location_description %}
+{% docs stg_chicago_crime__location_description_name %}
 Description of the location where the incident occurred.
-{% enddocs %}
-
-{% docs stg_chicago_crime__location_description_normalized %}
-ID of the description of the location where the incident occurred.
 {% enddocs %}
 
 {% docs stg_chicago_crime__is_arrested %}

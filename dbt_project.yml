@@ -22,7 +22,8 @@ vars:
 models:
   chicago_open_data_dbt:
     staging:
-      +materialized: view
+      crime_raw:
+        +materialized: view
     intermediate:
       +materialized: view
     marts:

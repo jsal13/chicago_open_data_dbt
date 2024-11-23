@@ -1,0 +1,56 @@
+version: 2
+
+models:
+  - name: fct_crimes_per_community_area_per_month_year
+    description: '{{ doc("fct_crimes_per_community_area_per_month_year") }}'
+    config:
+      contract:
+        enforced: true
+
+    columns:
+      - name: year_month_occurred_on
+        description: >
+          The year and month the offense occurred on.
+        data_type: text
+        data_test:
+          - unique
+          - not_null
+          - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_not_be_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: text
+
+      - name: offense_primary_type
+        description: '{{ doc("stg_chicago_crime__offense_primary_type") }}'
+        data_type: text
+        data_test:
+          - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: text
+
+      - name: offense_description
+        description: '{{ doc("stg_chicago_crime__offense_description") }}'
+        data_type: text
+        data_test:
+          - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: text
+
+      - name: number_of_crimes
+        description: >
+          Count of distinct crimes committed.
+        data_type: bigint
+        data_test:
+          - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: bigint
+
+      - name: community_area_name
+        description: '{{ doc("seed_chicago_commuinity_areas__community_area_name") }}'
+        data_type: text
+        data_test:
+          - dbt_expectations.expect_column_to_exist
+          - unique
+          - dbt_expectations.expect_column_values_to_not_be_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: text

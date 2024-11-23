@@ -31,3 +31,19 @@ Population density of community area in square miles.
 {% docs seed_chicago_commuinity_areas__density_per_sq_km %}
 Population density of community area in square kilometers.
 {% enddocs %}
+
+{% docs seed_chicago_location_descriptions__location_description_id %}
+ID of location description.
+{% enddocs %}
+
+{% docs seed_chicago_location_descriptions__location_description_name %}
+Location description value.
+{% enddocs %}
+
+{% docs seed_chicago_offense_primary_type__offense_primary_type_id %}
+ID of offense primary type.
+{% enddocs %}
+
+{% docs seed_chicago_offense_primary_type__offense_primary_type_name %}
+Offense primary type value.
+{% enddocs %}

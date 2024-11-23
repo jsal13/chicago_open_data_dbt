@@ -10,7 +10,7 @@
 
 with source as (
     select *
-    from {{ ref('stg_chicago_crime__offense_information_normalized') }}
+    from {{ ref('base_chicago_crime__offense_information') }}
 ),
 columns_selected as (
     select

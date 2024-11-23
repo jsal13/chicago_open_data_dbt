@@ -3,7 +3,7 @@ with community_areas as (
         crime_id,
         community_area_id
     from
-        {{ ref('stg_chicago_crime__locations_normalized') }}
+        {{ ref('int_chicago_crime__locations') }}
 ),
 offenses_with_description as (
     select
@@ -40,21 +40,21 @@ denormalized as (
     select
         gbaym.year_month_occurred_on,
         cadt.community_area_name,
-        opt_lookup.offense_primary_type,
-        od_lookup.offense_description,
+        opt.offense_primary_type,
+        od.offense_description,
         gbaym.number_of_crimes
     from
 
         grouped_by_area_and_year_month as gbaym
     left join
-        {{ ref('stg_chicago_crime__offense_description_lookup') }} as od_lookup
-        on gbaym.offense_description_id = od_lookup.offense_description_id
+        {{ ref("int_chicago_crime__offense_information") }} as od
+        on gbaym.offense_description_id = od.offense_description_id
     left join
-        {{ ref('stg_chicago_crime__offense_primary_type_lookup') }}
-            as opt_lookup
-        on gbaym.offense_primary_type_id = opt_lookup.offense_primary_type_id
+        {{ ref('stg_chicago_crime__offense_primary_type') }}
+            as opt
+        on gbaym.offense_primary_type_id = opt.offense_primary_type_id
     left join
-        {{ ref('stg_chicago_crime__community_areas_dimension_tbl') }} as cadt
+        {{ ref('stg_chicago_crime__community_areas') }} as cadt
         on gbaym.community_area_id = cadt.community_area_id
 )
 

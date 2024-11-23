@@ -1,8 +1,8 @@
 version: 2
 
 models:
-  - name: stg_chicago_crime__offense_description_lookup
-    description: '{{ doc("stg_chicago_crime__offense_description_lookup") }}'
+  - name: stg_chicago_crime__offense_description
+    description: '{{ doc("stg_chicago_crime__offense_description") }}'
     config:
       contract:
         enforced: true
@@ -14,6 +14,7 @@ models:
         data_test:
           - dbt_expectations.expect_column_to_exist
           - unique
+          - not_null
           - dbt_expectations.expect_column_values_to_not_be_null
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: bigint

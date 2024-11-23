@@ -1,6 +1,6 @@
-models:
-  - name: seed
-    description: '{{ doc("stg_chicago_crime__locations") }}'
+seeds:
+  - name: chicago_community_areas
+    description: '{{ doc("chicago_community_areas") }}'
     config:
       contract:
         enforced: true

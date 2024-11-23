@@ -8,3 +8,8 @@ logs/
 .venv/
 .vscode/
 .env
+
+# Allow small seeds.
+!chicago_community_areas.csv
+!chicago_location_descriptions.csv
+!chicago_offense_primary_type.csv

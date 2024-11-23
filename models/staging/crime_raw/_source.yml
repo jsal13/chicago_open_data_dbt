@@ -2,11 +2,14 @@ version: 2
 
 sources:
   - name: crime_raw
+    description: '{{ doc("crime_raw__crime") }}'
     database: admin
+    freshness:
     schema: public
     tables:
       - name: crime
         description: '{{ doc("crime_raw__crime") }}'
+        freshness: null
         configure:
           contract:
             enforce: true
