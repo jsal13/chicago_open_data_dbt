@@ -18,6 +18,7 @@ joined_to_lookups as (
         source.crime_id,
         source.case_number,
         ld_lookup.location_description_id,
+        source.community_area_id,
 
         -- STRINGS
         source.neighborhood_block,
@@ -26,7 +27,6 @@ joined_to_lookups as (
         source.police_beat,
         source.police_district,
         source.ward,
-        source.community_area,
 
         -- FLOATS
         source.x_coordinate,

@@ -16,12 +16,24 @@ This table holds information about the criminal offense.  It is indexed by `crim
 Lookup table for `location_description`.
 {% enddocs %}
 
+{% docs stg_chicago_crime__offense_primary_type_lookup %}
+Lookup table for `offense_primary_type` column.
+{% enddocs %}
+
+{% docs stg_chicago_crime__offense_description_lookup %}
+Lookup table for `offense_description` column.
+{% enddocs %}
+
 {% docs stg_chicago_crime__community_areas_dimension_tbl %}
 Dimension / lookup table for `community_area`.
 {% enddocs %}
 
 {% docs stg_chicago_crime__locations_normalized %}
 Normalized version of `stg_chicago_crime__locations`.  From the denormalized version: This table holds information about the location of crimes.  It is indexed by `crime_id`.
+{% enddocs %}
+
+{% docs stg_chicago_crime__offense_information_normalized %}
+Normalized version of `stg_chicago_crime__offense_information`.  This table holds information about the criminal offense.  It is indexed by `crime_id`.
 {% enddocs %}
 
 {% !! FIELDS !! %}
@@ -46,8 +58,16 @@ The partially redacted address where the incident occurred, placing it on the sa
 The Illinois Unifrom Crime Reporting code. This is directly linked to the Primary Type and Description. See the list of IUCR codes at <https://data.cityofchicago.org/d/c7ck-438e>.
 {% enddocs %}
 
+{% docs stg_chicago_crime__offense_primary_type_id %}
+ID for a lookup of `offense_primary_type`.  **Do not use these as static numbers, they will change when any new values are added.**
+{% enddocs %}
+
 {% docs stg_chicago_crime__offense_primary_type %}
 The primary description of the IUCR code.
+{% enddocs %}
+
+{% docs stg_chicago_crime__offense_description_id %}
+ID for a lookup of `offense_description`.  **Do not use these as static numbers, they will change when any new areas are added.**
 {% enddocs %}
 
 {% docs stg_chicago_crime__offense_description %}
@@ -55,7 +75,7 @@ The secondary description of the IUCR code, a subcategory of the primary descrip
 {% enddocs %}
 
 {% docs stg_chicago_crime__location_description_id %}
-ID for a lookup of location_description.  **Do not use these as static numbers, they will change when any new areas are added.**
+ID for a lookup of location_description.  **Do not use these as static numbers, they will change when any new values are added.**
 {% enddocs %}
 
 {% docs stg_chicago_crime__location_description %}

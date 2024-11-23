@@ -1,8 +1,8 @@
 version: 2
 
 models:
-  - name: stg_chicago_crime__locations_normalized
-    description: '{{ doc("stg_chicago_crime__locations_normalized") }}'
+  - name: int_chicago_crime__offense_information
+    description: '{{ doc("int_chicago_crime__offense_information") }}'
     config:
       contract:
         enforced: true
@@ -24,8 +24,26 @@ models:
         data_tests:
           - dbt_expectations.expect_column_values_to_not_be_null
 
-      - name: neighborhood_block
-        description: '{{ doc("stg_chicago_crime__neighborhood_block") }}'
+      - name: occurred_on
+        description: '{{ doc("stg_chicago_crime__occurred_on") }}'
+        data_type: timestamp
+        data_test:
+          - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_not_be_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: timestamp
+
+      - name: updated_on
+        description: '{{ doc("stg_chicago_crime__updated_on") }}'
+        data_type: timestamp
+        data_test:
+          - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_not_be_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: timestamp
+
+      - name: iucr_code
+        description: '{{ doc("stg_chicago_crime__id") }}'
         data_type: text
         data_test:
           - dbt_expectations.expect_column_to_exist
@@ -33,16 +51,8 @@ models:
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: text
 
-      - name: location_description_id
-        description: '{{ doc("stg_chicago_crime__location_description_id") }}'
-        data_type: bigint
-        data_test:
-          - dbt_expectations.expect_column_to_exist
-          - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: bigint
-
-      - name: police_beat
-        description: '{{ doc("stg_chicago_crime__police_beat") }}'
+      - name: offense_primary_type
+        description: '{{ doc("stg_chicago_crime__offense_primary_type") }}'
         data_type: text
         data_test:
           - dbt_expectations.expect_column_to_exist
@@ -50,62 +60,38 @@ models:
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: text
 
-      - name: police_district
-        description: '{{ doc("stg_chicago_crime__police_district") }}'
+      - name: offense_description
+        description: '{{ doc("stg_chicago_crime__offense_description") }}'
         data_type: text
         data_test:
           - dbt_expectations.expect_column_to_exist
-          - dbt_expectations.expect_column_values_to_not_be_null:
-              row_condition: crime_id not in {{ var("distict_null_records") }}
-          - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: text
-
-      - name: ward
-        description: '{{ doc("stg_chicago_crime__ward") }}'
-        data_type: text
-        data_test:
-          - dbt_expectations.expect_column_to_exist
-          - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: text
-
-      - name: community_area_id
-        description: '{{ doc("seed_chicago_commuinity_areas__community_area_id") }}'
-        data_type: integer
-        data_test:
-          - dbt_expectations.expect_column_to_exist
-          - unique
           - dbt_expectations.expect_column_values_to_not_be_null
           - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: integer
+              column_type: text
 
-      - name: x_coordinate
-        description: '{{ doc("stg_chicago_crime__x_coordinate") }}'
-        data_type: float
+      - name: fbi_code
+        description: '{{ doc("stg_chicago_crime__fbi_code") }}'
+        data_type: text
         data_test:
           - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_not_be_null
           - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: float
+              column_type: text
 
-      - name: y_coordinate
-        description: '{{ doc("stg_chicago_crime__y_coordinate") }}'
-        data_type: float
+      - name: is_arrested
+        description: '{{ doc("stg_chicago_crime__is_arrested") }}'
+        data_type: boolean
         data_test:
           - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_not_be_null
           - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: float
+              column_type: boolean
 
-      - name: latitude
-        description: '{{ doc("stg_chicago_crime__latitude") }}'
-        data_type: float
+      - name: is_domestic
+        description: '{{ doc("stg_chicago_crime__is_domestic") }}'
+        data_type: boolean
         data_test:
           - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_not_be_null
           - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: float
-
-      - name: longitude
-        description: '{{ doc("stg_chicago_crime__longitude") }}'
-        data_type: float
-        data_test:
-          - dbt_expectations.expect_column_to_exist
-          - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: float
+              column_type: boolean

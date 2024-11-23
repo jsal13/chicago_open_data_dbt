@@ -17,6 +17,7 @@ renamed_and_casted as (
         -- IDs
         {{ adapter.quote("id") }} as crime_id,
         {{ adapter.quote("case_number") }} as case_number,
+        {{ adapter.quote("community_area") }}::integer as community_area_id,
 
         -- STRINGS
         {{ adapter.quote("block") }} as neighborhood_block,
@@ -26,7 +27,7 @@ renamed_and_casted as (
         {{ adapter.quote("beat") }}::text as police_beat,
         {{ adapter.quote("district") }}::text as police_district,
         {{ adapter.quote("ward") }}::text as ward,
-        {{ adapter.quote("community_area") }}::text as community_area,
+
 
         -- FLOATS
         {{ adapter.quote("x_coordinate") }} as x_coordinate,

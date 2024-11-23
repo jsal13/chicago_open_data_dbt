@@ -68,13 +68,15 @@ models:
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: text
 
-      - name: community_area
-        description: '{{ doc("stg_chicago_crime__community_area") }}'
-        data_type: text
+      - name: community_area_id
+        description: '{{ doc("seed_chicago_commuinity_areas__community_area_id") }}'
+        data_type: integer
         data_test:
           - dbt_expectations.expect_column_to_exist
+          - unique
+          - dbt_expectations.expect_column_values_to_not_be_null
           - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: text
+              column_type: integer
 
       - name: x_coordinate
         description: '{{ doc("stg_chicago_crime__x_coordinate") }}'

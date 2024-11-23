@@ -10,22 +10,22 @@
 
 with source as (
     select *
-    from {{ ref('stg_chicago_crime__locations_normalized') }}
+    from {{ ref('stg_chicago_crime__offense_information_normalized') }}
 ),
 columns_selected as (
     select
         -- IDs
         crime_id,
         case_number,
-        community_area_id,
+        offense_primary_type_id,
+        offense_description_id,
 
-        -- STRINGS
-        location_description,
+        -- TIMESTAMPS
+        occurred_on,
 
-        -- NUMERICS
-        police_beat,
-        police_district,
-        ward
+        -- BOOLEANS
+        is_arrested,
+        is_domestic
 
     from source
 )
