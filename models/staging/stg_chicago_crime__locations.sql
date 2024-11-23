@@ -23,10 +23,10 @@ renamed_and_casted as (
         {{ adapter.quote("location_description") }} as location_description,
 
         -- NUMERICS
-        {{ adapter.quote("beat") }}::int as police_beat,
-        {{ adapter.quote("district") }}::int as police_district,
-        {{ adapter.quote("ward") }}::int as ward,
-        {{ adapter.quote("community_area") }}::int as community_area,
+        {{ adapter.quote("beat") }}::text as police_beat,
+        {{ adapter.quote("district") }}::text as police_district,
+        {{ adapter.quote("ward") }}::text as ward,
+        {{ adapter.quote("community_area") }}::text as community_area,
 
         -- FLOATS
         {{ adapter.quote("x_coordinate") }} as x_coordinate,

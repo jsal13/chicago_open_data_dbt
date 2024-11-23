@@ -12,6 +12,18 @@ This table holds information about the location of crimes.  It is indexed by `cr
 This table holds information about the criminal offense.  It is indexed by `crime_id`.
 {% enddocs %}
 
+{% docs stg_chicago_crime__location_description_lookup %}
+Lookup table for `location_description`.
+{% enddocs %}
+
+{% docs stg_chicago_crime__community_areas_dimension_tbl %}
+Dimension / lookup table for `community_area`.
+{% enddocs %}
+
+{% docs stg_chicago_crime__locations_normalized %}
+Normalized version of `stg_chicago_crime__locations`.  From the denormalized version: This table holds information about the location of crimes.  It is indexed by `crime_id`.
+{% enddocs %}
+
 {% !! FIELDS !! %}
 
 {% docs stg_chicago_crime__id %}
@@ -42,8 +54,16 @@ The primary description of the IUCR code.
 The secondary description of the IUCR code, a subcategory of the primary description.
 {% enddocs %}
 
+{% docs stg_chicago_crime__location_description_id %}
+ID for a lookup of location_description.  **Do not use these as static numbers, they will change when any new areas are added.**
+{% enddocs %}
+
 {% docs stg_chicago_crime__location_description %}
 Description of the location where the incident occurred.
+{% enddocs %}
+
+{% docs stg_chicago_crime__location_description_normalized %}
+ID of the description of the location where the incident occurred.
 {% enddocs %}
 
 {% docs stg_chicago_crime__is_arrested %}

@@ -86,7 +86,7 @@ sources:
 
           - name: ward
             description: '{{ doc("stg_chicago_crime__ward") }}'
-            data_type: integer
+            data_type: text
 
           - name: community_area
             description: '{{ doc("stg_chicago_crime__community_area") }}'
