@@ -24,13 +24,15 @@ models:
         data_tests:
           - dbt_expectations.expect_column_values_to_not_be_null
 
-      - name: location_description
-        description: '{{ doc("stg_chicago_crime__location_description") }}'
-        data_type: text
+      - name: location_description_id
+        description: '{{ doc("stg_chicago_crime__location_description_id") }}'
+        data_type: bigint
         data_test:
           - dbt_expectations.expect_column_to_exist
+          - unique
+          - dbt_expectations.expect_column_values_to_not_be_null
           - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: text
+              column_type: bigint
 
       - name: police_beat
         description: '{{ doc("stg_chicago_crime__police_beat") }}'

@@ -17,8 +17,8 @@ joined_to_lookups as (
         -- IDs
         source.crime_id,
         source.case_number,
-        optl.offense_primary_type_id,
-        odl.offense_description_id,
+        opt_lookup.offense_primary_type_id,
+        od_lookup.offense_description_id,
 
         -- TIMESTAMPS
         source.occurred_on,
@@ -34,10 +34,11 @@ joined_to_lookups as (
 
     from source
     left join
-        {{ ref('stg_chicago_crime__offense_description_lookup') }} as odl_lookup
-        on source.offense_description = odl_lookup.offense_description
+        {{ ref('stg_chicago_crime__offense_description_lookup') }} as od_lookup
+        on source.offense_description = od_lookup.offense_description
     left join
-        {{ ref('stg_chicago_crime__offense_primary_type_lookup') }} as optl
-        on source.offense_primary_type = odl_lookup.offense_primary_type
+        {{ ref('stg_chicago_crime__offense_primary_type_lookup') }}
+            as opt_lookup
+        on source.offense_primary_type = opt_lookup.offense_primary_type
 )
 select * from joined_to_lookups

@@ -18,9 +18,7 @@ columns_selected as (
         crime_id,
         case_number,
         community_area_id,
-
-        -- STRINGS
-        location_description,
+        location_description_id,
 
         -- NUMERICS
         police_beat,

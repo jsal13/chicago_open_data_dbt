@@ -33,50 +33,25 @@ models:
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: timestamp
 
-      - name: updated_on
-        description: '{{ doc("stg_chicago_crime__updated_on") }}'
-        data_type: timestamp
+      - name: offense_primary_type_id
+        description: '{{ doc("stg_chicago_crime__offense_primary_type_id") }}'
+        data_type: bigint
         data_test:
           - dbt_expectations.expect_column_to_exist
+          - unique
           - dbt_expectations.expect_column_values_to_not_be_null
           - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: timestamp
+              column_type: bigint
 
-      - name: iucr_code
-        description: '{{ doc("stg_chicago_crime__id") }}'
-        data_type: text
+      - name: offense_description_id
+        description: '{{ doc("stg_chicago_crime__offense_description_id") }}'
+        data_type: bigint
         data_test:
           - dbt_expectations.expect_column_to_exist
+          - unique
           - dbt_expectations.expect_column_values_to_not_be_null
           - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: text
-
-      - name: offense_primary_type
-        description: '{{ doc("stg_chicago_crime__offense_primary_type") }}'
-        data_type: text
-        data_test:
-          - dbt_expectations.expect_column_to_exist
-          - dbt_expectations.expect_column_values_to_not_be_null
-          - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: text
-
-      - name: offense_description
-        description: '{{ doc("stg_chicago_crime__offense_description") }}'
-        data_type: text
-        data_test:
-          - dbt_expectations.expect_column_to_exist
-          - dbt_expectations.expect_column_values_to_not_be_null
-          - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: text
-
-      - name: fbi_code
-        description: '{{ doc("stg_chicago_crime__fbi_code") }}'
-        data_type: text
-        data_test:
-          - dbt_expectations.expect_column_to_exist
-          - dbt_expectations.expect_column_values_to_not_be_null
-          - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: text
+              column_type: bigint
 
       - name: is_arrested
         description: '{{ doc("stg_chicago_crime__is_arrested") }}'
