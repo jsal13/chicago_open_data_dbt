@@ -33,17 +33,25 @@ Population density of community area in square kilometers.
 {% enddocs %}
 
 {% docs seed_chicago_location_descriptions__location_description_id %}
-ID of location description.
+ID for location description.
 {% enddocs %}
 
 {% docs seed_chicago_location_descriptions__location_description_name %}
 Location description value.
 {% enddocs %}
 
-{% docs seed_chicago_offense_primary_type__offense_primary_type_id %}
-ID of offense primary type.
+{% docs seed_chicago_offense_primary_types__offense_primary_type_id %}
+ID for offense primary type.
 {% enddocs %}
 
-{% docs seed_chicago_offense_primary_type__offense_primary_type_name %}
+{% docs seed_chicago_offense_primary_types__offense_primary_type_name %}
 Offense primary type value.
+{% enddocs %}
+
+{% docs seed_chicago_offense_descriptions__offense_description_id %}
+ID for Offense description.
+{% enddocs %}
+
+{% docs seed_chicago_offense_descriptions__offense_description_name %}
+Offense description value.
 {% enddocs %}

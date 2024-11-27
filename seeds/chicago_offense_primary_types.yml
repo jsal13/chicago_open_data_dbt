@@ -1,15 +1,13 @@
-version: 2
-
-models:
-  - name: stg_chicago_crime__offense_primary_type
-    description: '{{ doc("stg_chicago_crime__offense_primary_type") }}'
+seeds:
+  - name: chicago_offense_primary_types
+    description: List of primary offense types.
     config:
       contract:
         enforced: true
 
     columns:
-      - name: location_description_id
-        description: '{{ doc("seed_chicago_offense_primary_type__offense_primary_type_id") }}'
+      - name: offense_primary_type_id
+        description: '{{ doc("seed_chicago_offense_primary_types__offense_primary_type_id") }}'
         data_type: integer
         data_test:
           - dbt_expectations.expect_column_to_exist
@@ -20,7 +18,7 @@ models:
               column_type: integer
 
       - name: offense_primary_type_name
-        description: '{{ doc("seed_chicago_offense_primary_type__offense_primary_type_name") }}'
+        description: '{{ doc("seed_chicago_offense_primary_types__offense_primary_type_name") }}'
         data_type: text
         data_test:
           - dbt_expectations.expect_column_to_exist

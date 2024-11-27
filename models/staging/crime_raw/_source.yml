@@ -47,7 +47,7 @@ sources:
               - not_null
 
           - name: primary_type
-            description: '{{ doc("stg_chicago_crime__offense_primary_type") }}'
+            description: '{{ doc("stg_chicago_crime__offense_primary_type_name") }}'
             data_type: text
             data_tests:
               - not_null

@@ -21,7 +21,7 @@ models:
               column_type: text
 
       - name: offense_primary_type
-        description: '{{ doc("stg_chicago_crime__offense_primary_type") }}'
+        description: '{{ doc("stg_chicago_crime__offense_primary_types") }}'
         data_type: text
         data_test:
           - dbt_expectations.expect_column_to_exist

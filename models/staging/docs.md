@@ -16,7 +16,7 @@ This table holds information about the criminal offense.  It is indexed by `crim
 Lookup table for `location_description`.
 {% enddocs %}
 
-{% docs stg_chicago_crime__offense_primary_type %}
+{% docs stg_chicago_crime__offense_primary_types %}
 Lookup table for `offense_primary_type` column.
 {% enddocs %}
 

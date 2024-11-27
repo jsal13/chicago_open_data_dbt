@@ -50,7 +50,7 @@ denormalized as (
         {{ ref("int_chicago_crime__offense_information") }} as od
         on gbaym.offense_description_id = od.offense_description_id
     left join
-        {{ ref('stg_chicago_crime__offense_primary_type') }}
+        {{ ref('stg_chicago_crime__offense_primary_types') }}
             as opt
         on gbaym.offense_primary_type_id = opt.offense_primary_type_id
     left join

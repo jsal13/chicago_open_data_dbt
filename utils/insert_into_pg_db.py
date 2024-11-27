@@ -36,7 +36,7 @@ def write_csv_to_db(csv_loc: str, uri: str = DB_URI) -> None:
 
 
 if __name__ == "__main__":
-    for year in range(2014, 2025):  # Did 2010 manually.
+    for year in range(2010, 2025):  # Did 2010 manually.
         print(f"Inserting {year} into table...")
         csv_loc = f"./data_monthly/{year}.csv"
         write_csv_to_db(csv_loc=csv_loc)

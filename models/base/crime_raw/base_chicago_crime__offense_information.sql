@@ -35,11 +35,11 @@ joined_to_lookups as (
     from source
     left join
         {{ ref('stg_chicago_crime__offense_description') }} as od
-        on source.description = od.offense_description
+        on source.description = od.offense_description_name
     left join
-        {{ ref('stg_chicago_crime__offense_primary_type') }}
+        {{ ref('stg_chicago_crime__offense_primary_types') }}
             as opt
-        on source.primary_type = opt.offense_primary_type
+        on source.primary_type = opt.offense_primary_type_name
 ),
 renamed_and_casted as (
     select
