@@ -1,6 +1,6 @@
 version: 2
 models:
-  - name: int_chicago_crime__locations
+  - name: stg_chicago_crime__locations
     columns:
       - name: crime_id
         description: "Unique identifier for the record in the Chicago Crime data."

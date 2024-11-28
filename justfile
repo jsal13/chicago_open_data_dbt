@@ -17,3 +17,9 @@ venv:
     && source .venv/bin/activate \
     && pip install uv \
     && uv pip install -r requirements.txt
+
+format:
+  prettier "./**/*.yml" --write
+
+gen_yaml:
+  dbt-osmosis yaml refactor models

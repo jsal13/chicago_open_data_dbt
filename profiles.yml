@@ -1,3 +1,4 @@
+---
 chicago_open_data_dbt:
   target: dev
   outputs:

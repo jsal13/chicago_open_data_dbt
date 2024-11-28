@@ -1,26 +1,23 @@
-name: "chicago_open_data_dbt"
-version: "1.0.0"
+---
+name: chicago_open_data_dbt
+version: 1.0.0
 
 # Copy the profile.yml into ~/.dbt if DBT can't find it.
-profile: "chicago_open_data_dbt"
-
-model-paths: ["models", "sources"]
-analysis-paths: ["analyses"]
-test-paths: ["tests"]
-seed-paths: ["seeds"]
-macro-paths: ["macros"]
-snapshot-paths: ["snapshots"]
+profile: chicago_open_data_dbt
+model-paths: [models, sources]
+analysis-paths: [analyses]
+test-paths: [tests]
+seed-paths: [seeds]
+macro-paths: [macros]
+snapshot-paths: [snapshots]
 
 # directories to be removed by `dbt clean`
-clean-targets:
-  - "target"
-  - "dbt_packages"
-
+clean-targets: [target, dbt_packages]
 vars:
   distict_null_records: ('11181991')
-
 models:
   chicago_open_data_dbt:
+    +dbt-osmosis: "{model}.yml"
     staging:
       crime_raw:
         +materialized: view
@@ -28,7 +25,6 @@ models:
       +materialized: view
     marts:
       +materialized: table
-
 dispatch:
   - macro_namespace: dbt
-    search_order: ["dbt_project_evaluator", "dbt"]
+    search_order: [dbt_project_evaluator, dbt]

@@ -1,15 +1,14 @@
+---
 version: 2
-
 models:
-  - name: stg_chicago_crime__offense_primary_types
-    description: '{{ doc("stg_chicago_crime__offense_primary_types") }}'
+  - name: base_chicago_crime__offense_primary_types
+    description: '{{ doc("base_chicago_crime__offense_primary_types") }}'
     config:
       contract:
         enforced: true
-
     columns:
       - name: offense_primary_type_id
-        description: '{{ doc("seed_chicago_offense_primary_types__offense_primary_type_id") }}'
+        description: '{{ doc("chicago_offense_primary_types__offense_primary_type_id") }}'
         data_type: integer
         data_test:
           - dbt_expectations.expect_column_to_exist
@@ -18,9 +17,8 @@ models:
           - dbt_expectations.expect_column_values_to_not_be_null
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: integer
-
       - name: offense_primary_type_name
-        description: '{{ doc("seed_chicago_offense_primary_types__offense_primary_type_name") }}'
+        description: '{{ doc("chicago_offense_primary_types__offense_primary_type") }}'
         data_type: text
         data_test:
           - dbt_expectations.expect_column_to_exist

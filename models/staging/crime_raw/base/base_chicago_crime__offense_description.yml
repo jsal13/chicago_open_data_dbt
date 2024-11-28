@@ -1,15 +1,14 @@
+---
 version: 2
-
 models:
-  - name: stg_chicago_crime__offense_description
-    description: '{{ doc("stg_chicago_crime__offense_description") }}'
+  - name: base_chicago_crime__offense_description
+    description: '{{ doc("base_chicago_crime__offense_description") }}'
     config:
       contract:
         enforced: true
-
     columns:
       - name: offense_description_id
-        description: '{{ doc("stg_chicago_crime__offense_description_id") }}'
+        description: '{{ doc("chicago_crime__offense_description_id") }}'
         data_type: integer
         data_test:
           - dbt_expectations.expect_column_to_exist
@@ -18,9 +17,8 @@ models:
           - dbt_expectations.expect_column_values_to_not_be_null
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: integer
-
       - name: offense_description_name
-        description: '{{ doc("stg_chicago_crime__offense_description") }}'
+        description: '{{ doc("chicago_crime__offense_description") }}'
         data_type: text
         data_test:
           - dbt_expectations.expect_column_to_exist

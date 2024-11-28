@@ -8,23 +8,5 @@
     ]
 ) }}
 
-with source as (
-    select *
-    from {{ ref('base_chicago_crime__locations') }}
-),
-columns_selected as (
-    select
-        -- IDs
-        crime_id,
-        case_number,
-        community_area_id,
-        location_description_id,
-
-        -- NUMERICS
-        police_beat,
-        police_district,
-        ward
-
-    from source
-)
-select * from columns_selected
+select *
+from {{ ref('stg_chicago_crime__locations') }}

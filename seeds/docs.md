@@ -4,54 +4,54 @@
 Chicago Community Areas data taken from <https://en.wikipedia.org/wiki/Community_areas_in_Chicago> in Nov-2024.
 {% enddocs %}
 
-{% docs seed_chicago_commuinity_areas__community_area_id %}
+{% docs chicago_commuinity_areas__community_area_id %}
 Unique identifier for community area.
 {% enddocs %}
 
-{% docs seed_chicago_commuinity_areas__community_area_name %}
+{% docs chicago_commuinity_areas__community_area %}
 Name of community area.
 {% enddocs %}
 
-{% docs seed_chicago_commuinity_areas__population_2020 %}
+{% docs chicago_commuinity_areas__population_2020 %}
 Population of community area in 2020.
 {% enddocs %}
 
-{% docs seed_chicago_commuinity_areas__area_sq_mi %}
+{% docs chicago_commuinity_areas__area_sq_mi %}
 Area of community area in square miles.
 {% enddocs %}
 
-{% docs seed_chicago_commuinity_areas__area_sq_km %}
+{% docs chicago_commuinity_areas__area_sq_km %}
 Area of community area in square kilometers.
 {% enddocs %}
 
-{% docs seed_chicago_commuinity_areas__density_per_sq_mi %}
+{% docs chicago_commuinity_areas__density_per_sq_mi %}
 Population density of community area in square miles.
 {% enddocs %}
 
-{% docs seed_chicago_commuinity_areas__density_per_sq_km %}
+{% docs chicago_commuinity_areas__density_per_sq_km %}
 Population density of community area in square kilometers.
 {% enddocs %}
 
-{% docs seed_chicago_location_descriptions__location_description_id %}
+{% docs chicago_location_descriptions__location_description_id %}
 ID for location description.
 {% enddocs %}
 
-{% docs seed_chicago_location_descriptions__location_description_name %}
+{% docs chicago_location_descriptions__location_description %}
 Location description value.
 {% enddocs %}
 
-{% docs seed_chicago_offense_primary_types__offense_primary_type_id %}
+{% docs chicago_offense_primary_types__offense_primary_type_id %}
 ID for offense primary type.
 {% enddocs %}
 
-{% docs seed_chicago_offense_primary_types__offense_primary_type_name %}
+{% docs chicago_offense_primary_types__offense_primary_type %}
 Offense primary type value.
 {% enddocs %}
 
-{% docs seed_chicago_offense_descriptions__offense_description_id %}
+{% docs chicago_offense_descriptions__offense_description_id %}
 ID for Offense description.
 {% enddocs %}
 
-{% docs seed_chicago_offense_descriptions__offense_description_name %}
+{% docs chicago_offense_descriptions__offense_description %}
 Offense description value.
 {% enddocs %}

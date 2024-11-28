@@ -7,26 +7,4 @@
         }
     ]
 ) }}
-
-with source as (
-    select *
-    from {{ ref('base_chicago_crime__offense_information') }}
-),
-columns_selected as (
-    select
-        -- IDs
-        crime_id,
-        case_number,
-        offense_primary_type_id,
-        offense_description_id,
-
-        -- TIMESTAMPS
-        occurred_on,
-
-        -- BOOLEANS
-        is_arrested,
-        is_domestic
-
-    from source
-)
-select * from columns_selected
+select * from {{ ref('stg_chicago_crime__offense_information') }}

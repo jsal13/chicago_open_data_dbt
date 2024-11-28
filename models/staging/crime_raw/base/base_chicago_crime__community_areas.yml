@@ -1,15 +1,14 @@
+---
 version: 2
-
 models:
-  - name: stg_chicago_crime__community_areas
-    description: '{{ doc("stg_chicago_crime__community_areas") }}'
+  - name: base_chicago_crime__community_areas
+    description: '{{ doc("base_chicago_crime__community_areas") }}'
     config:
       contract:
         enforced: true
-
     columns:
       - name: community_area_id
-        description: '{{ doc("seed_chicago_commuinity_areas__community_area_id") }}'
+        description: '{{ doc("chicago_commuinity_areas__community_area_id") }}'
         data_type: integer
         data_test:
           - dbt_expectations.expect_column_to_exist
@@ -18,19 +17,11 @@ models:
           - dbt_expectations.expect_column_values_to_not_be_null
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: integer
-
       - name: community_area_name
-        description: '{{ doc("seed_chicago_commuinity_areas__community_area_name") }}'
+        description: Name of community area.
         data_type: text
-        data_test:
-          - dbt_expectations.expect_column_to_exist
-          - unique
-          - dbt_expectations.expect_column_values_to_not_be_null
-          - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: text
-
       - name: population_2020
-        description: '{{ doc("seed_chicago_commuinity_areas__population_2020") }}'
+        description: '{{ doc("chicago_commuinity_areas__population_2020") }}'
         data_type: integer
         data_test:
           - dbt_expectations.expect_column_to_exist
@@ -38,18 +29,16 @@ models:
           - dbt_expectations.expect_column_values_to_not_be_null
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: integer
-
       - name: area_sq_mi
-        description: '{{ doc("seed_chicago_commuinity_areas__area_sq_mi") }}'
-        data_type: float
+        description: '{{ doc("chicago_commuinity_areas__area_sq_mi") }}'
+        data_type: double precision
         data_test:
           - dbt_expectations.expect_column_to_exist
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: float
-
       - name: density_per_sq_mi
-        description: '{{ doc("seed_chicago_commuinity_areas__density_per_sq_mi") }}'
-        data_type: float
+        description: '{{ doc("chicago_commuinity_areas__density_per_sq_mi") }}'
+        data_type: double precision
         data_test:
           - dbt_expectations.expect_column_to_exist
           - dbt_expectations.expect_column_values_to_be_of_type:

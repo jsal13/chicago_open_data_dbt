@@ -1,14 +1,15 @@
-dbt-core
-# dbt-duckdb
-dbt-postgres
-sqlfluff-templater-dbt
 dagster-dbt 
 dagster-webserver
+dbt-core
+dbt-osmosis
+dbt-postgres
+pandas
+pandas-stubs
+polars
+psycopg2-binary
+pyarrow
 python-dotenv
 sodapy
-pandas
-polars
-pandas-stubs
-pyarrow
 sqlalchemy
-psycopg2-binary
+sqlfluff-templater-dbt
+yamlfix
