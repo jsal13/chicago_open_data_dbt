@@ -16,6 +16,9 @@ clean-targets: [target, dbt_packages]
 vars:
   distict_null_records: ('11181991')
 
+seeds:
+  +schema: seed_data
+
 models:
   chicago_open_data_dbt:
     enabled: true
