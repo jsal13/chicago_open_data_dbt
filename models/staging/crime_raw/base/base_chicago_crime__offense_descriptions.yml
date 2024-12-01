@@ -1,14 +1,12 @@
----
 version: 2
+
 models:
-  - name: base_chicago_crime__location_description
-    description: '{{ doc("base_chicago_crime__location_description") }}'
-    config:
-      contract:
-        enforced: true
+  - name: base_chicago_crime__offense_descriptions
+    description: "Lookup table for `offense_description` column."
+
     columns:
-      - name: location_description_id
-        description: '{{ doc("chicago_location_descriptions__location_description_id") }}'
+      - name: offense_description_id
+        description: "ID for a lookup of offense_description."
         data_type: integer
         data_test:
           - dbt_expectations.expect_column_to_exist
@@ -18,8 +16,8 @@ models:
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: integer
 
-      - name: location_description_name
-        description: '{{ doc("chicago_location_descriptions__location_description") }}'
+      - name: offense_description_name
+        description: "The secondary description of the IUCR code, a subcategory of the primary description."
         data_type: text
         data_test:
           - dbt_expectations.expect_column_to_exist

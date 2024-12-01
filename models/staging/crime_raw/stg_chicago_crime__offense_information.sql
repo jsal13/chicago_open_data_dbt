@@ -29,7 +29,7 @@ select
 
 from {{ ref('base_chicago_crime__all') }} as base
 left join
-    {{ ref('base_chicago_crime__offense_description') }} as od
+    {{ ref('base_chicago_crime__offense_descriptions') }} as od
     on base.offense_description = od.offense_description_name
 left join
     {{ ref('base_chicago_crime__offense_primary_types') }} as opt

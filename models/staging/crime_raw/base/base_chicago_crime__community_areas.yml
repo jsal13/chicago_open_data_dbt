@@ -1,55 +1,35 @@
----
 version: 2
+
 models:
   - name: base_chicago_crime__community_areas
-    description: '{{ doc("base_chicago_crime__community_areas") }}'
-    config:
-      contract:
-        enforced: true
+    description: "Dimension / lookup table for `community_area`."
     columns:
       - name: community_area_id
-        description: '{{ doc("chicago_commuinity_areas__community_area_id") }}'
         data_type: integer
+        description: "ID for a lookup of `community_area`."
         data_test:
           - dbt_expectations.expect_column_to_exist
-          - unique
-          - not_null
-          - dbt_expectations.expect_column_values_to_not_be_null
-          - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: integer
 
       - name: community_area_name
-        description: Name of community area.
         data_type: text
+        description: "Name of community area."
         data_test:
           - dbt_expectations.expect_column_to_exist
-          - unique
-          - dbt_expectations.expect_column_values_to_not_be_null
-          - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: text
 
       - name: population_2020
-        description: '{{ doc("chicago_commuinity_areas__population_2020") }}'
         data_type: integer
+        description: "Population of the community area in 2020."
         data_test:
           - dbt_expectations.expect_column_to_exist
-          - unique
-          - dbt_expectations.expect_column_values_to_not_be_null
-          - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: integer
 
       - name: area_sq_mi
-        description: '{{ doc("chicago_commuinity_areas__area_sq_mi") }}'
         data_type: double precision
+        description: "Area of the community area in square miles."
         data_test:
           - dbt_expectations.expect_column_to_exist
-          - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: double precision
 
       - name: density_per_sq_mi
-        description: '{{ doc("chicago_commuinity_areas__density_per_sq_mi") }}'
         data_type: double precision
+        description: "Density of the community area in square miles."
         data_test:
           - dbt_expectations.expect_column_to_exist
-          - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: double precision

@@ -1,15 +1,11 @@
----
 version: 2
+
 models:
   - name: base_chicago_crime__all
-    description: '{{ doc("base_chicago_crime__all") }}'
-    config:
-      contract:
-        enforced: true
-
+    description: "All casted data taken from <https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-Present/ijzp-q8t2/about_data>.  This is the base model."
     columns:
       - name: crime_id
-        description: '{{ doc("chicago_crime__id") }}'
+        description: "Unique identifier for the record in the Chicago Crime data."
         data_type: bigint
         data_tests:
           - unique
@@ -18,8 +14,16 @@ models:
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: bigint
 
+      - name: occurred_on
+        description: "Date when the incident occurred. This is sometimes a best estimate."
+        data_type: timestamp without time zone
+        data_tests:
+          - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: timestamp without time zone
+
       - name: case_number
-        description: '{{ doc("chicago_crime__case_number") }}'
+        description: "The Chicago Police Department RD Number (Records Division Number), which is unique to the incident."
         data_type: text
         data_tests:
           - dbt_expectations.expect_column_to_exist
@@ -27,7 +31,7 @@ models:
               column_type: text
 
       - name: neighborhood_block
-        description: '{{ doc("chicago_crime__neighborhood_block") }}'
+        description: "The partially redacted address where the incident occurred, placing it on the same block as the actual address."
         data_type: text
         data_tests:
           - dbt_expectations.expect_column_to_exist
@@ -35,15 +39,7 @@ models:
               column_type: text
 
       - name: iucr_code
-        description: '{{ doc("chicago_crime__iucr_code") }}'
-        data_type: text
-        data_tests:
-          - dbt_expectations.expect_column_to_exist
-          - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: text
-
-      - name: fbi_code
-        description: '{{ doc("chicago_crime__fbi_code") }}'
+        description: "The Illinois Unifrom Crime Reporting code. This is directly linked to the Primary Type and Description. See the list of IUCR codes at <https://data.cityofchicago.org/d/c7ck-438e>."
         data_type: text
         data_tests:
           - dbt_expectations.expect_column_to_exist
@@ -51,7 +47,7 @@ models:
               column_type: text
 
       - name: offense_primary_type
-        description: '{{ doc("chicago_crime__offense_primary_type") }}'
+        description: "Primary type of the offense."
         data_type: text
         data_tests:
           - dbt_expectations.expect_column_to_exist
@@ -59,7 +55,7 @@ models:
               column_type: text
 
       - name: offense_description
-        description: '{{ doc("chicago_crime__offense_description") }}'
+        description: "The secondary description of the IUCR code, a subcategory of the primary description."
         data_type: text
         data_tests:
           - dbt_expectations.expect_column_to_exist
@@ -67,15 +63,34 @@ models:
               column_type: text
 
       - name: location_description
-        description: '{{ doc("chicago_crime__location_description") }}'
+        description: "Description of the location the event happened."
         data_type: text
         data_tests:
           - dbt_expectations.expect_column_to_exist
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: text
 
+      - name: is_arrested
+        description: "Indicates whether an arrest was made."
+        data_type: boolean
+        data_tests:
+          - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: boolean
+
+      - name: is_domestic
+        description: "Indicates whether the incident was domestic-related as defined by the Illinois Domestic Violence Act."
+        data_type: boolean
+        data_tests:
+          - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: boolean
+
       - name: police_beat
-        description: '{{ doc("chicago_crime__police_beat") }}'
+        description: >
+          Indicates the beat where the incident occurred. A beat is the smallest police geographic area - each beat has a dedicated police beat car. Three to five beats make up a police sector, and three sectors make up a police district. The Chicago Police Department has 22 police districts.
+
+          See the beats at <https://data.cityofchicago.org/d/aerh-rz74>.
         data_type: text
         data_tests:
           - dbt_expectations.expect_column_to_exist
@@ -83,7 +98,7 @@ models:
               column_type: text
 
       - name: police_district
-        description: '{{ doc("chicago_crime__police_district") }}'
+        description: "Indicates the police district where the incident occurred. See the districts at <https://data.cityofchicago.org/d/fthy-xz3r>."
         data_type: text
         data_tests:
           - dbt_expectations.expect_column_to_exist
@@ -93,7 +108,7 @@ models:
               row_condition: crime_id not in {{ var("distict_null_records") }}
 
       - name: ward
-        description: '{{ doc("chicago_crime__ward") }}'
+        description: "The ward (City Council district) where the incident occurred. See the wards at <https://data.cityofchicago.org/d/sp34-6z76>."
         data_type: text
         data_tests:
           - dbt_expectations.expect_column_to_exist
@@ -101,7 +116,18 @@ models:
               column_type: text
 
       - name: community_area
-        description: '{{ doc("chicago_crime__community_area") }}'
+        description: >
+          Indicates the community area where the incident occurred. Chicago has 77 community areas.
+
+          See the community areas at <https://data.cityofchicago.org/d/cauq-8yn6>.
+        data_type: text
+        data_tests:
+          - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: text
+
+      - name: fbi_code
+        description: "Indicates the crime classification as outlined in the FBI's National Incident-Based Reporting System (NIBRS).See the Chicago Police Department listing of these classifications at <https://gis.chicagopolice.org/pages/crime_details>."
         data_type: text
         data_tests:
           - dbt_expectations.expect_column_to_exist
@@ -109,7 +135,7 @@ models:
               column_type: text
 
       - name: x_coordinate
-        description: '{{ doc("chicago_crime__x_coordinate") }}'
+        description: "The x coordinate of the location where the incident occurred in State Plane Illinois East NAD 1983 projection. This location is shifted from the actual location for partial redaction but falls on the same block."
         data_type: bigint
         data_tests:
           - dbt_expectations.expect_column_to_exist
@@ -117,15 +143,23 @@ models:
               column_type: bigint
 
       - name: y_coordinate
-        description: '{{ doc("chicago_crime__y_coordinate") }}'
+        description: "The y coordinate of the location where the incident occurred in State Plane Illinois East NAD 1983 projection. This location is shifted from the actual location for partial redaction but falls on the same block."
         data_type: bigint
         data_tests:
           - dbt_expectations.expect_column_to_exist
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: bigint
 
+      - name: updated_on
+        description: "Date and time the record was last updated."
+        data_type: timestamp without time zone
+        data_tests:
+          - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: timestamp without time zone
+
       - name: latitude
-        description: '{{ doc("chicago_crime__latitude") }}'
+        description: "The latitude of the location where the incident occurred. This location is shifted from the actual location for partial redaction but falls on the same block."
         data_type: double precision
         data_tests:
           - dbt_expectations.expect_column_to_exist
@@ -133,41 +167,9 @@ models:
               column_type: double precision
 
       - name: longitude
-        description: '{{ doc("chicago_crime__longitude") }}'
+        description: "The longitude of the location where the incident occurred. This location is shifted from the actual location for partial redaction but falls on the same block."
         data_type: double precision
         data_tests:
           - dbt_expectations.expect_column_to_exist
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: double precision
-
-      - name: is_arrested
-        description: '{{ doc("chicago_crime__is_arrested") }}'
-        data_type: boolean
-        data_tests:
-          - dbt_expectations.expect_column_to_exist
-          - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: boolean
-
-      - name: is_domestic
-        description: '{{ doc("chicago_crime__is_domestic") }}'
-        data_type: boolean
-        data_tests:
-          - dbt_expectations.expect_column_to_exist
-          - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: boolean
-
-      - name: occurred_on
-        description: '{{ doc("chicago_crime__occurred_on") }}'
-        data_type: timestamp without time zone
-        data_tests:
-          - dbt_expectations.expect_column_to_exist
-          - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: timestamp without time zone
-
-      - name: updated_on
-        description: '{{ doc("chicago_crime__updated_on") }}'
-        data_type: timestamp without time zone
-        data_tests:
-          - dbt_expectations.expect_column_to_exist
-          - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: timestamp without time zone

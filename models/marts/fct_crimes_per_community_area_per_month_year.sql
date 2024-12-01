@@ -31,6 +31,10 @@ grouped_by_area_and_year_month as (
         count(crime_id) as number_of_crimes
     from
         joined_offenses_and_community_areas
+    where
+        community_area_id is not null
+        and offense_primary_type_id is not null
+        and offense_description_id is not null
     group by
         1, 2, 3, 4
     order by
@@ -47,7 +51,7 @@ denormalized as (
 
         grouped_by_area_and_year_month as gbaym
     left join
-        {{ ref("base_chicago_crime__offense_description") }} as od
+        {{ ref("base_chicago_crime__offense_descriptions") }} as od
         on gbaym.offense_description_id = od.offense_description_id
     left join
         {{ ref('base_chicago_crime__offense_primary_types') }}

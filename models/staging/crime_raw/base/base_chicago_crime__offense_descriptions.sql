@@ -1,7 +1,7 @@
 {{ config(
     indexes=[
         {
-            "columns": ["offense_primary_type_id"],
+            "columns": ["offense_description_id"],
             "unique": true,
             "type": "btree",
         }
@@ -9,9 +9,9 @@
 ) }}
 with source as (
     select *
-    from {{ ref('chicago_offense_primary_types') }}
+    from {{ ref('chicago_offense_descriptions') }}
 )
 select
-    offense_primary_type_id,
-    offense_primary_type_name
+    offense_description_id,
+    offense_description_name
 from source

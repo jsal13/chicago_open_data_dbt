@@ -1,34 +1,67 @@
 version: 2
+
 models:
   - name: stg_chicago_crime__offense_information
+    description: "Staging table for crime offense information."
     columns:
       - name: crime_id
-        description: "Unique identifier for the record in the Chicago Crime data."
         data_type: bigint
+        description: "Unique identifier for the record in the Chicago Crime data."
+        data_tests:
+          - unique
+          - not_null
+          - dbt_expectations.expect_column_to_exist
+
       - name: case_number
+        data_type: text
         description: "The Chicago Police Department RD Number (Records Division Number), which is unique to the incident."
-        data_type: text
+        data_tests:
+          - dbt_expectations.expect_column_to_exist
+
       - name: offense_primary_type_id
+        data_type: integer
         description: "ID for offense primary type."
-        data_type: integer
+        data_tests:
+          - dbt_expectations.expect_column_to_exist
+
       - name: offense_description_id
-        description: "ID for a lookup of `offense_description`. **Do not use these as static numbers, they will change when any new areas are added.**"
         data_type: integer
+        description: "ID for a lookup of `offense_description`."
+        data_tests:
+          - dbt_expectations.expect_column_to_exist
+
       - name: occurred_on
+        data_type: timestamp without time zone
         description: "Date when the incident occurred. This is sometimes a best estimate."
-        data_type: timestamp without time zone
+        data_tests:
+          - dbt_expectations.expect_column_to_exist
+
       - name: updated_on
-        description: "Date and time the record was last updated."
         data_type: timestamp without time zone
+        description: "Date and time the record was last updated."
+        data_tests:
+          - dbt_expectations.expect_column_to_exist
+
       - name: iucr_code
+        data_type: text
         description: "The Illinois Unifrom Crime Reporting code. This is directly linked to the Primary Type and Description. See the list of IUCR codes at <https://data.cityofchicago.org/d/c7ck-438e>."
-        data_type: text
+        data_tests:
+          - dbt_expectations.expect_column_to_exist
+
       - name: fbi_code
-        description: "Indicates the crime classification as outlined in the FBI's National Incident-Based Reporting System (NIBRS).See the Chicago Police Department listing of these classifications at <https://gis.chicagopolice.org/pages/crime_details>."
         data_type: text
+        description: "Indicates the crime classification as outlined in the FBI's National Incident-Based Reporting System (NIBRS).See the Chicago Police Department listing of these classifications at <https://gis.chicagopolice.org/pages/crime_details>."
+        data_tests:
+          - dbt_expectations.expect_column_to_exist
+
       - name: is_arrested
+        data_type: boolean
         description: "Indicates whether an arrest was made."
-        data_type: boolean
+        data_tests:
+          - dbt_expectations.expect_column_to_exist
+
       - name: is_domestic
-        description: "Indicates whether the incident was domestic-related as defined by the Illinois Domestic Violence Act."
         data_type: boolean
+        description: "Indicates whether the incident was domestic-related as defined by the Illinois Domestic Violence Act."
+        data_tests:
+          - dbt_expectations.expect_column_to_exist

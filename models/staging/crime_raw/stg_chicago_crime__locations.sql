@@ -27,11 +27,15 @@ select
     base.x_coordinate,
     base.y_coordinate,
     base.latitude,
-    base.longitude
+    base.longitude,
+
+    -- TIMESTAMPS
+    base.occurred_on,
+    base.updated_on
 
 from {{ ref('base_chicago_crime__all') }} as base
 left join
-    {{ ref('base_chicago_crime__location_description') }} as ld
+    {{ ref('base_chicago_crime__location_descriptions') }} as ld
     on base.location_description = ld.location_description_name
 left join
     {{ ref('base_chicago_crime__community_areas') }} as ca

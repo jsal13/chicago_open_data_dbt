@@ -1,3 +1,13 @@
+{{ config(
+    indexes=[
+        {
+            "columns": ["community_area_id"],
+            "unique": true,
+            "type": "btree",
+        }
+    ]
+) }}
+
 with source as (
     select *
     from {{ ref('chicago_community_areas') }}

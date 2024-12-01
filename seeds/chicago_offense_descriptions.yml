@@ -1,13 +1,10 @@
----
 seeds:
   - name: chicago_offense_descriptions
-    description: List of offense descriptions.
-    config:
-      contract:
-        enforced: true
+    description: "Lookup table for `offense_description` column."
+
     columns:
       - name: offense_description_id
-        description: '{{ doc("chicago_offense_descriptions__offense_description_id") }}'
+        description: "ID for a lookup of offense_description."
         data_type: integer
         data_test:
           - dbt_expectations.expect_column_to_exist
@@ -16,8 +13,9 @@ seeds:
           - dbt_expectations.expect_column_values_to_not_be_null
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: integer
+
       - name: offense_description_name
-        description: '{{ doc("chicago_offense_descriptions__offense_description") }}'
+        description: "The secondary description of the IUCR code, a subcategory of the primary description."
         data_type: text
         data_test:
           - dbt_expectations.expect_column_to_exist

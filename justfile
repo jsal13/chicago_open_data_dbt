@@ -21,5 +21,5 @@ venv:
 format:
   prettier "./**/*.yml" --write
 
-gen_yaml:
-  dbt-osmosis yaml refactor models
+gen_yaml model:
+  @dbt run-operation generate_model_yaml --quiet --args '{"model_names": ["{{model}}"], "upstream_descriptions": True}' > {{model}}.yml
