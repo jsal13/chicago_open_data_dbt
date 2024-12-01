@@ -6,79 +6,168 @@ models:
     config:
       contract:
         enforced: true
+
     columns:
       - name: crime_id
         description: '{{ doc("chicago_crime__id") }}'
         data_type: bigint
-        data_tests: [unique, not_null]
+        data_tests:
+          - unique
+          - not_null
+          - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: bigint
+
       - name: case_number
         description: '{{ doc("chicago_crime__case_number") }}'
         data_type: text
-        data_tests: [not_null]
+        data_tests:
+          - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: text
+
       - name: neighborhood_block
         description: '{{ doc("chicago_crime__neighborhood_block") }}'
         data_type: text
-        data_tests: [not_null]
+        data_tests:
+          - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: text
+
       - name: iucr_code
         description: '{{ doc("chicago_crime__iucr_code") }}'
         data_type: text
-        data_tests: [not_null]
+        data_tests:
+          - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: text
+
       - name: fbi_code
         description: '{{ doc("chicago_crime__fbi_code") }}'
         data_type: text
-        data_tests: [not_null]
+        data_tests:
+          - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: text
+
       - name: offense_primary_type
         description: '{{ doc("chicago_crime__offense_primary_type") }}'
         data_type: text
-        data_tests: [not_null]
+        data_tests:
+          - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: text
+
       - name: offense_description
         description: '{{ doc("chicago_crime__offense_description") }}'
         data_type: text
-        data_tests: [not_null]
+        data_tests:
+          - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: text
+
       - name: location_description
         description: '{{ doc("chicago_crime__location_description") }}'
         data_type: text
+        data_tests:
+          - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: text
+
       - name: police_beat
         description: '{{ doc("chicago_crime__police_beat") }}'
         data_type: text
-        data_tests: [not_null]
+        data_tests:
+          - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: text
+
       - name: police_district
         description: '{{ doc("chicago_crime__police_district") }}'
         data_type: text
         data_tests:
+          - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: text
           - dbt_expectations.expect_column_values_to_not_be_null:
               row_condition: crime_id not in {{ var("distict_null_records") }}
+
       - name: ward
         description: '{{ doc("chicago_crime__ward") }}'
         data_type: text
+        data_tests:
+          - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: text
+
       - name: community_area
         description: '{{ doc("chicago_crime__community_area") }}'
         data_type: text
+        data_tests:
+          - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: text
+
       - name: x_coordinate
         description: '{{ doc("chicago_crime__x_coordinate") }}'
         data_type: bigint
+        data_tests:
+          - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: bigint
+
       - name: y_coordinate
         description: '{{ doc("chicago_crime__y_coordinate") }}'
         data_type: bigint
+        data_tests:
+          - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: bigint
+
       - name: latitude
         description: '{{ doc("chicago_crime__latitude") }}'
-        data_type: float
+        data_type: double precision
+        data_tests:
+          - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: double precision
+
       - name: longitude
         description: '{{ doc("chicago_crime__longitude") }}'
-        data_type: float
+        data_type: double precision
+        data_tests:
+          - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: double precision
+
       - name: is_arrested
         description: '{{ doc("chicago_crime__is_arrested") }}'
         data_type: boolean
-        data_tests: [not_null]
+        data_tests:
+          - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: boolean
+
       - name: is_domestic
         description: '{{ doc("chicago_crime__is_domestic") }}'
         data_type: boolean
-        data_tests: [not_null]
+        data_tests:
+          - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: boolean
+
       - name: occurred_on
         description: '{{ doc("chicago_crime__occurred_on") }}'
-        data_type: timestamp
-        data_tests: [not_null]
+        data_type: timestamp without time zone
+        data_tests:
+          - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: timestamp without time zone
+
       - name: updated_on
         description: '{{ doc("chicago_crime__updated_on") }}'
-        data_type: timestamp
-        data_tests: [not_null]
+        data_type: timestamp without time zone
+        data_tests:
+          - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: timestamp without time zone

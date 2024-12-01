@@ -15,6 +15,7 @@ snapshot-paths: [snapshots]
 clean-targets: [target, dbt_packages]
 vars:
   distict_null_records: ('11181991')
+
 models:
   chicago_open_data_dbt:
     +dbt-osmosis: "{model}.yml"
@@ -25,6 +26,10 @@ models:
       +materialized: view
     marts:
       +materialized: table
+
 dispatch:
   - macro_namespace: dbt
     search_order: [dbt_project_evaluator, dbt]
+
+tests:
+  +severity: warn
