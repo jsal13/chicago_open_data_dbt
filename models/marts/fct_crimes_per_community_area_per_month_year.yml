@@ -9,7 +9,6 @@ models:
         description: "Year-month the offense occurred."
         data_tests:
           - not_null
-          - dbt_expectations.expect_column_to_exist
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: text
 
@@ -18,7 +17,6 @@ models:
         description: "Name of community area."
         data_tests:
           - not_null
-          - dbt_expectations.expect_column_to_exist
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: text
 
@@ -27,7 +25,6 @@ models:
         description: "The primary description of the iucr code."
         data_tests:
           - not_null
-          - dbt_expectations.expect_column_to_exist
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: text
 
@@ -36,7 +33,6 @@ models:
         description: "The primary description of the offense."
         data_tests:
           - not_null
-          - dbt_expectations.expect_column_to_exist
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: text
 
@@ -45,6 +41,5 @@ models:
         description: "Total number of crimes."
         data_tests:
           - not_null
-          - dbt_expectations.expect_column_to_exist
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: bigint
