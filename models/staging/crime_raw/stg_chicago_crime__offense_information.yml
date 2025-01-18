@@ -3,6 +3,10 @@ version: 2
 models:
   - name: stg_chicago_crime__offense_information
     description: "Staging table containing detailed information about criminal offenses reported in Chicago."
+    config:
+      contract:
+        enforced: true
+
     columns:
       - name: crime_id
         data_type: bigint

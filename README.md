@@ -1,17 +1,24 @@
-NOTE: Use `misc/loancorp_data_gen` to generate a duckdb db.  Update `profiles.yml` with the location of the db.
+# Chicago Open Data DBT
 
-Welcome to your new dbt project!
+## Introduction
 
-### Using the starter project
+A DBT project using Chicago Crime Data.
 
-Try running the following commands:
-- dbt run
-- dbt test
+## Quickstart
 
+```shell
+just venv  # create the virtual env.
+docker compose up  # pg and cube up.
+```
 
-### Resources:
-- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [chat](https://community.getdbt.com/) on Slack for live discussions and support
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
+TODO: Add dbt build instructions and data gen instructions.
+
+### Credentials
+
+|             |           |
+| ----------- | --------- |
+| PG User     | `admin`   |
+| PG Password | `example` |
+| PG DB       | `admin`   |
+| PG Hostname | `db`      |
+| PG Port     | `5432`    |

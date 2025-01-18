@@ -10,9 +10,6 @@ seeds:
           - dbt_expectations.expect_column_to_exist
           - unique
           - not_null
-          - dbt_expectations.expect_column_values_to_not_be_null
-          - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: integer
 
       - name: location_description_name
         description: "Description of the location the offense happened in."
@@ -20,6 +17,4 @@ seeds:
         data_test:
           - dbt_expectations.expect_column_to_exist
           - unique
-          - dbt_expectations.expect_column_values_to_not_be_null
-          - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: text
+          - not_null

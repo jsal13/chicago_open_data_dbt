@@ -3,25 +3,22 @@ version: 2
 models:
   - name: base_chicago_crime__location_descriptions
     description: "List of Location Descriptions used in Chicago Crime DB.  Lookup table for `location_description`."
+    config:
+      contract:
+        enforced: true
 
     columns:
       - name: location_description_id
         description: "ID for a lookup of `location_description`."
         data_type: integer
         data_test:
-          - dbt_expectations.expect_column_to_exist
           - unique
           - not_null
           - dbt_expectations.expect_column_values_to_not_be_null
-          - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: integer
 
       - name: location_description_name
         description: "Description of the location the offense happened in."
         data_type: text
         data_test:
-          - dbt_expectations.expect_column_to_exist
           - unique
           - dbt_expectations.expect_column_values_to_not_be_null
-          - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: text

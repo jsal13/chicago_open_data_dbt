@@ -18,8 +18,5 @@ venv:
     && pip install uv \
     && uv pip install -r requirements.txt
 
-format:
-  prettier "./**/*.yml" --write
-
 gen_yaml model:
   @dbt run-operation generate_model_yaml --quiet --args '{"model_names": ["{{model}}"], "upstream_descriptions": True}' > {{model}}.yml

@@ -1,0 +1,32 @@
+version: 2
+
+models:
+  - name: int_offenses_and_community_areas_joined
+    description: "Offenses and Community Areas tables joined together."
+    config:
+      contract:
+        enforced: true
+
+    columns:
+      - name: crime_id
+        data_type: bigint
+        description: "Unique identifier for the record in the Chicago Crime data."
+        data_tests:
+          - unique
+          - not_null
+
+      - name: offense_primary_type_id
+        data_type: integer
+        description: "ID for offense primary type."
+
+      - name: offense_description_id
+        data_type: integer
+        description: "ID for a lookup of `offense_description`."
+
+      - name: occurred_on
+        description: "Date when the incident occurred. This is sometimes a best estimate."
+        data_type: timestamp without time zone
+
+      - name: community_area_id
+        data_type: integer
+        description: "Unique identifier for community area."

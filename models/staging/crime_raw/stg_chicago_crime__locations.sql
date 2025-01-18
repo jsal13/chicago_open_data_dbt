@@ -14,21 +14,17 @@ select
     base.case_number,
     ld.location_description_id,
     ca.community_area_id,
-
     -- STRINGS
     base.neighborhood_block,
-
     -- NUMERICS
     base.police_beat,
     base.police_district,
     base.ward,
-
     -- FLOATS
     base.x_coordinate,
     base.y_coordinate,
     base.latitude,
     base.longitude,
-
     -- TIMESTAMPS
     base.occurred_on,
     base.updated_on
@@ -39,4 +35,4 @@ left join
     on base.location_description = ld.location_description_name
 left join
     {{ ref('base_chicago_crime__community_areas') }} as ca
-    on base.community_area = ca.community_area_name
+    on base.community_area_id = ca.community_area_id

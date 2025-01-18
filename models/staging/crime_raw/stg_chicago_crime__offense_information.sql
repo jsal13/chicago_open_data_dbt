@@ -14,15 +14,12 @@ select
     base.case_number,
     opt.offense_primary_type_id,
     od.offense_description_id,
-
     -- TIMESTAMPS
     base.occurred_on,
     base.updated_on,
-
     -- STRINGS
     base.iucr_code,
     base.fbi_code,
-
     -- BOOLEANS
     base.is_arrested,
     base.is_domestic

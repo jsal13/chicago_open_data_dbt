@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: offenses_in_community_areas
+    description: "Offenses per community area."
+    config:
+      contract:
+        enforced: true
+
+    columns:
+      - name: crime_id
+        data_type: bigint
+        description: "Unique identifier for the record in the Chicago Crime data."
+
+      - name: offense_primary_type_id
+        data_type: integer
+        description: "ID for a lookup of `offense_primary_type`."
+
+      - name: offense_description_id
+        data_type: integer
+        description: "ID for a lookup of offense_description."
+
+      - name: occurred_on
+        description: "Date when the incident occurred. This is sometimes a best estimate."
+        data_type: timestamp without time zone
+
+      - name: community_area_id
+        data_type: integer
+        description: "ID for a lookup of `community_area`."
+
+      - name: offense_primary_type_name
+        data_type: text
+        description: "The type of primary offense."
+
+      - name: offense_description_name
+        data_type: text
+        description: "The secondary description of the IUCR code, a subcategory of the primary description."
+
+      - name: community_area_name
+        data_type: text
+        description: "Name of community area."

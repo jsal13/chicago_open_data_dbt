@@ -3,33 +3,27 @@ version: 2
 models:
   - name: base_chicago_crime__community_areas
     description: "Dimension / lookup table for `community_area`."
+    config:
+      contract:
+        enforced: true
+
     columns:
       - name: community_area_id
         data_type: integer
         description: "ID for a lookup of `community_area`."
-        data_test:
-          - dbt_expectations.expect_column_to_exist
 
       - name: community_area_name
         data_type: text
         description: "Name of community area."
-        data_test:
-          - dbt_expectations.expect_column_to_exist
 
       - name: population_2020
         data_type: integer
         description: "Population of the community area in 2020."
-        data_test:
-          - dbt_expectations.expect_column_to_exist
 
       - name: area_sq_mi
         data_type: double precision
         description: "Area of the community area in square miles."
-        data_test:
-          - dbt_expectations.expect_column_to_exist
 
       - name: density_per_sq_mi
         data_type: double precision
         description: "Density of the community area in square miles."
-        data_test:
-          - dbt_expectations.expect_column_to_exist

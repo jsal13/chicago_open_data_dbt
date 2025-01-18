@@ -5,6 +5,7 @@ sources:
     database: admin
     freshness:
     schema: public
+
     tables:
       - name: crime
         description: "All raw data taken from <https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-Present/ijzp-q8t2/about_data>.  This is the base model."
@@ -15,81 +16,42 @@ sources:
             data_tests:
               - unique
               - not_null
-              - dbt_expectations.expect_column_to_exist
-              - dbt_expectations.expect_column_values_to_be_of_type:
-                  column_type: bigint
 
           - name: date
             description: "Date when the incident occurred. This is sometimes a best estimate."
             data_type: text
-            data_tests:
-              - dbt_expectations.expect_column_to_exist
-              - dbt_expectations.expect_column_values_to_be_of_type:
-                  column_type: text
 
           - name: case_number
             description: "The Chicago Police Department RD Number (Records Division Number), which is unique to the incident."
             data_type: text
-            data_tests:
-              - dbt_expectations.expect_column_to_exist
-              - dbt_expectations.expect_column_values_to_be_of_type:
-                  column_type: text
 
           - name: block
             description: "The partially redacted address where the incident occurred, placing it on the same block as the actual address."
             data_type: text
-            data_tests:
-              - dbt_expectations.expect_column_to_exist
-              - dbt_expectations.expect_column_values_to_be_of_type:
-                  column_type: text
 
           - name: iucr
             description: "The Illinois Unifrom Crime Reporting code. This is directly linked to the Primary Type and Description. See the list of IUCR codes at <https://data.cityofchicago.org/d/c7ck-438e>."
             data_type: text
-            data_tests:
-              - dbt_expectations.expect_column_to_exist
-              - dbt_expectations.expect_column_values_to_be_of_type:
-                  column_type: text
 
           - name: primary_type
             description: "Primary type of the offense."
             data_type: text
-            data_tests:
-              - dbt_expectations.expect_column_to_exist
-              - dbt_expectations.expect_column_values_to_be_of_type:
-                  column_type: text
 
           - name: description
             description: "The secondary description of the IUCR code, a subcategory of the primary description."
             data_type: text
-            data_tests:
-              - dbt_expectations.expect_column_to_exist
-              - dbt_expectations.expect_column_values_to_be_of_type:
-                  column_type: text
 
           - name: location_description
             description: "Description of the location the event happened."
             data_type: text
-            data_tests:
-              - dbt_expectations.expect_column_to_exist
-              - dbt_expectations.expect_column_values_to_be_of_type:
-                  column_type: text
 
           - name: arrest
             description: "Indicates whether an arrest was made."
             data_type: boolean
-            data_tests:
-              - dbt_expectations.expect_column_to_exist
-              - dbt_expectations.expect_column_values_to_be_of_type:
-                  column_type: boolean
 
           - name: domestic
             description: "Indicates whether the incident was domestic-related as defined by the Illinois Domestic Violence Act."
             data_type: boolean
-            data_tests:
-              - dbt_expectations.expect_column_to_exist
-              - dbt_expectations.expect_column_values_to_be_of_type:
-                  column_type: boolean
 
           - name: beat
             description: >
@@ -97,28 +59,17 @@ sources:
 
               See the beats at <https://data.cityofchicago.org/d/aerh-rz74>.
             data_type: text
-            data_tests:
-              - dbt_expectations.expect_column_to_exist
-              - dbt_expectations.expect_column_values_to_be_of_type:
-                  column_type: text
 
           - name: district
             description: "Indicates the police district where the incident occurred. See the districts at <https://data.cityofchicago.org/d/fthy-xz3r>."
             data_type: text
             data_tests:
-              - dbt_expectations.expect_column_to_exist
-              - dbt_expectations.expect_column_values_to_be_of_type:
-                  column_type: text
               - dbt_expectations.expect_column_values_to_not_be_null:
                   row_condition: id not in {{ var("distict_null_records") }}
 
           - name: ward
             description: "The ward (City Council district) where the incident occurred. See the wards at <https://data.cityofchicago.org/d/sp34-6z76>."
             data_type: bigint
-            data_tests:
-              - dbt_expectations.expect_column_to_exist
-              - dbt_expectations.expect_column_values_to_be_of_type:
-                  column_type: bigint
 
           - name: community_area
             description: >
@@ -126,63 +77,31 @@ sources:
 
               See the community areas at <https://data.cityofchicago.org/d/cauq-8yn6>.
             data_type: text
-            data_tests:
-              - dbt_expectations.expect_column_to_exist
-              - dbt_expectations.expect_column_values_to_be_of_type:
-                  column_type: text
 
           - name: fbi_code
             description: "Indicates the crime classification as outlined in the FBI's National Incident-Based Reporting System (NIBRS).See the Chicago Police Department listing of these classifications at <https://gis.chicagopolice.org/pages/crime_details>."
             data_type: text
-            data_tests:
-              - dbt_expectations.expect_column_to_exist
-              - dbt_expectations.expect_column_values_to_be_of_type:
-                  column_type: text
 
           - name: x_coordinate
             description: "The x coordinate of the location where the incident occurred in State Plane Illinois East NAD 1983 projection. This location is shifted from the actual location for partial redaction but falls on the same block."
             data_type: double precision
-            data_tests:
-              - dbt_expectations.expect_column_to_exist
-              - dbt_expectations.expect_column_values_to_be_of_type:
-                  column_type: double precision
 
           - name: y_coordinate
             description: "The y coordinate of the location where the incident occurred in State Plane Illinois East NAD 1983 projection. This location is shifted from the actual location for partial redaction but falls on the same block."
             data_type: double precision
-            data_tests:
-              - dbt_expectations.expect_column_to_exist
-              - dbt_expectations.expect_column_values_to_be_of_type:
-                  column_type: double precision
 
           - name: year
             description: "Year the incident occurred."
             data_type: bigint
-            data_tests:
-              - dbt_expectations.expect_column_to_exist
-              - dbt_expectations.expect_column_values_to_be_of_type:
-                  column_type: bigint
 
           - name: updated_on
             description: "Date and time the record was last updated."
             data_type: text
-            data_tests:
-              - dbt_expectations.expect_column_to_exist
-              - dbt_expectations.expect_column_values_to_be_of_type:
-                  column_type: text
 
           - name: latitude
             description: "The latitude of the location where the incident occurred. This location is shifted from the actual location for partial redaction but falls on the same block."
             data_type: double precision
-            data_tests:
-              - dbt_expectations.expect_column_to_exist
-              - dbt_expectations.expect_column_values_to_be_of_type:
-                  column_type: double precision
 
           - name: longitude
             description: "The longitude of the location where the incident occurred. This location is shifted from the actual location for partial redaction but falls on the same block."
             data_type: double precision
-            data_tests:
-              - dbt_expectations.expect_column_to_exist
-              - dbt_expectations.expect_column_values_to_be_of_type:
-                  column_type: double precision

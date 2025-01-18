@@ -8,9 +8,13 @@ logs/
 .venv/
 .vscode/
 .env
+model/  # cubemodel stuff.
 
 # Allow small seeds.
 !chicago_community_areas.csv
 !chicago_location_descriptions.csv
 !chicago_offense_primary_types.csv
 !chicago_offense_descriptions.csv
+
+.cubestore
+.mypy_cache

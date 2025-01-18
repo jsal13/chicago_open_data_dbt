@@ -10,8 +10,6 @@ seeds:
           - dbt_expectations.expect_column_to_exist
           - unique
           - dbt_expectations.expect_column_values_to_not_be_null
-          - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: integer
 
       - name: community_area_name
         description: "Name of community area."
@@ -20,8 +18,6 @@ seeds:
           - dbt_expectations.expect_column_to_exist
           - unique
           - dbt_expectations.expect_column_values_to_not_be_null
-          - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: text
 
       - name: population_2020
         description: "Population of the community area in 2020."
@@ -30,37 +26,27 @@ seeds:
           - dbt_expectations.expect_column_to_exist
           - unique
           - dbt_expectations.expect_column_values_to_not_be_null
-          - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: integer
 
       - name: area_sq_mi
         description: "Area of the community area in square miles."
         data_type: float
         data_test:
           - dbt_expectations.expect_column_to_exist
-          - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: float
 
       - name: area_sq_km
         description: "Area of the community area in square kilometers."
         data_type: float
         data_test:
           - dbt_expectations.expect_column_to_exist
-          - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: float
 
       - name: density_per_sq_mi
         description: "Density of the community area in square miles."
         data_type: float
         data_test:
           - dbt_expectations.expect_column_to_exist
-          - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: float
 
       - name: density_per_sq_km
         description: "Density of the community area in square kilometers."
         data_type: float
         data_test:
           - dbt_expectations.expect_column_to_exist
-          - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: float

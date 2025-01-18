@@ -22,8 +22,6 @@ seeds:
 models:
   chicago_open_data_dbt:
     enabled: true
-    +contract:
-      enforced: true
     +materialized: view
     marts:
       +materialized: table
